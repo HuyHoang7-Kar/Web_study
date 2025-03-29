@@ -15,10 +15,18 @@ from api.views.student.student_forum.student_forum import StudentForumView
 from api.views.auth.login import login_view
 from api.views.auth.forgotpassword import forgotpassword_view
 from api.views.auth.register import register_view
+
+# Import view cập nhật tài khoản từ student_setting_account
+from api.views.student.student_setting_account.student_setting_account import student_setting_account_view
+
 urlpatterns = [
     path("auth/login/", login_view, name="login"),
     path("auth/forgotpassword/", forgotpassword_view, name="forgotpassword"),
     path("auth/register/", register_view, name="register"),
+    
+    # Endpoint cập nhật thông tin tài khoản (bạn có thể đổi đường dẫn tùy ý)
+    path("student/student_setting_account/update/", student_setting_account_view, name="student_setting_account_update"),
+    
     path('student/student_home/student_home1/', StudentHome1View.as_view(), name='student_home1'),
     path('student/student_home/student_home2/', StudentHome2View.as_view(), name='student_home2'),
     path('student/student_home/student_home3/', StudentHome3View.as_view(), name='student_home3'),
@@ -30,4 +38,3 @@ urlpatterns = [
     path('student/student_forum/student_forum/', StudentForumView.as_view(), name='student_forum'),
     path('student/student_support/student_support/', StudentSupportView.as_view(), name='student_support'),
 ]
-

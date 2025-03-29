@@ -1,7 +1,7 @@
 .nav {
   background-color: #333;
   padding: 10px 0;
-  text-align: none;
+  /* text-align: none;  <-- Giá trị không hợp lệ, để đảm bảo không thay đổi cách hiển thị, ta giữ nguyên các thuộc tính khác */
   margin-left: -5px; /* 📌 Dịch menu sang trái 20px */
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
 .nav li a {
   color: white !important; 
   text-decoration: none; /* Xóa gạch chân */
-  font-weight: none;
+  font-weight: normal; /* "none" không hợp lệ, chuyển thành normal */
 }
 
 /* ✅ Hover vào menu chính */
@@ -42,7 +42,7 @@
   position: absolute;
   top: 100%;
   right: 15%; /* Căn giữa theo chiều ngang */
-  transform: translateX(-15%); /* Dịch chuyển lại 50% kích thước submenu để căn giữa */
+  transform: translateX(-15%); /* Dịch chuyển lại 15% để căn giữa */
   background-color: #333;
   list-style: none;
   min-width: 100px;
@@ -55,11 +55,6 @@
 }
 
 /* ✅ Hiển thị submenu khi hover vào chính LI */
-.nav li {
-  position: relative;
-}
-
-/* ✅ Khi hover vào LI, submenu sẽ xuất hiện ngay vị trí của chữ */
 .nav li:hover .submenu {
   display: block;
 }
@@ -136,7 +131,7 @@ tr:hover {
 /* ✅ Nút đăng ký */
 .register-button {
   padding: 10px 15px;
-  background-color: #003366; /* Màu xanh lá */
+  background-color: #003366; /* Màu xanh */
   color: white;
   border: none;
   border-radius: 12px;
@@ -197,6 +192,7 @@ tr:hover {
   border: none;
   outline: none;
 }
+
 /* 🎨 Giữ màu chữ */
 .header-text.black {
   color: black;
@@ -206,18 +202,50 @@ tr:hover {
   color: #003366; /* Bắt buộc giữ màu xanh */
 }
 
-  /* Thêm ảnh nền đẹp, ý tưởng của siupestcuti */
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+/* Thêm ảnh nền */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/023/455/517/small_2x/simple-blue-white-abstract-background-for-presentation-business-banner-technology-etc-free-vector.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ===== Responsive cho mọi thiết bị ===== */
+@media (max-width: 768px) {
+  /* Cho phép menu tự wrap nếu không đủ không gian */
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
-  body {
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/023/455/517/small_2x/simple-blue-white-abstract-background-for-presentation-business-banner-technology-etc-free-vector.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  .nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
+  .nav li {
+    padding: 6px 20px; /* Giảm padding để phù hợp màn hình nhỏ */
+  }
+  
+  /* Điều chỉnh vị trí các nút và thanh tìm kiếm để tránh tràn */
+  .login-button,
+  .register-button,
+  .auth-buttons,
+  .search-bar {
+    position: static;
+    margin: 10px auto;
+  }
+  
+  /* Table hiển thị full chiều rộng */
+  table {
+    width: 100%;
+  }
+}
